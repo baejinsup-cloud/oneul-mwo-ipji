@@ -74,7 +74,7 @@
   .ctx:empty { display: none; }
 
   /* 히어로: 기온 */
-  .hero { margin-top: 24px; }
+  .hero { margin-top: 22px; }
   .now { display: flex; align-items: flex-end; gap: 18px; flex-wrap: wrap; }
   .temp {
     font-family: var(--display); font-size: clamp(5.5rem, 26vw, 9rem); line-height: .85;
@@ -172,7 +172,7 @@
   .hour.sel { border-color: var(--zone); background: var(--zone-soft); }
 
   /* 피드백 */
-  .feedback { margin-top: 22px; padding: 18px; border-radius: 16px; border: 1px dashed var(--muted); }
+  .feedback { margin-top: 26px; padding: 18px; border-radius: 16px; border: 1px dashed var(--muted); }
   .feedback[hidden] { display: none; }
   .fb-q { margin: 0 0 10px; font-weight: 700; }
   .fb-btns { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -357,59 +357,37 @@
     .v-score .num { font-size: 2.8rem; }
   }
 
-  /* 코디 영상 */
-  .vid-filters { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; margin-bottom: 14px; }
-  .topics { display: flex; flex-wrap: wrap; gap: 6px; }
-  .topic {
-    border: 1px solid var(--line); background: var(--surface); border-radius: 999px;
-    padding: 6px 13px; font-size: .88rem; cursor: pointer;
+  /* 정리된 레이아웃 */
+  .card {
+    margin-top: 26px; background: var(--surface); border: 1px solid var(--line);
+    border-radius: 20px; padding: 22px 20px;
   }
-  .topic:hover { border-color: var(--muted); }
-  .topic.auto { border-color: var(--zone); }
-  .topic[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-  #vidGender { margin: 0; }
-  .vid-status { font-size: .88rem; color: var(--muted); margin: 0 0 14px; }
-  .vid-status:empty { display: none; }
-  .vid-grid {
-    list-style: none; margin: 0; padding: 0;
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 22px 16px;
+  .card h2 { margin-bottom: 2px; }
+  .card .sub { margin-bottom: 16px; }
+  .back-now { margin-top: 12px; display: inline-block; }
+  .more {
+    margin-top: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
   }
-  .vid { display: flex; flex-direction: column; gap: 8px; color: inherit; text-decoration: none; }
-  .vid:hover .vtitle { text-decoration: underline; text-underline-offset: 3px; }
-  .thumb {
-    position: relative; display: block; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden;
-    background: var(--line);
+  .more > summary {
+    list-style: none; cursor: pointer; padding: 14px 18px; display: flex; align-items: center; gap: 10px;
+    font-weight: 500; font-size: .95rem;
   }
-  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .vrank {
-    position: absolute; left: 8px; top: 8px; min-width: 28px; height: 28px; padding: 0 7px;
-    display: flex; align-items: center; justify-content: center; border-radius: 8px;
-    background: rgba(10,16,26,.78); color: #fff; font-family: var(--display); font-size: 1rem;
-  }
-  li:nth-child(-n+3) > .vid .vrank { background: var(--zone); color: #1B2536; }
-  .dur {
-    position: absolute; right: 6px; bottom: 6px; padding: 1px 6px; border-radius: 4px;
-    background: rgba(0,0,0,.78); color: #fff; font-size: .75rem; font-variant-numeric: tabular-nums;
-  }
-  .vbody { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-  .vtitle {
-    font-weight: 500; font-size: .95rem; line-height: 1.45;
-    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-  }
-  .vmeta { font-size: .8rem; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .yt-tag { display: inline-flex; align-items: center; gap: 5px; font-size: .72rem; color: var(--muted); margin-top: 3px; }
-  .yt-tag svg { width: 16px; height: auto; }
-  .skeleton .thumb { animation: pulse 1.2s ease-in-out infinite; }
-  .skeleton .vtitle { height: 14px; width: 80%; border-radius: 4px; background: var(--line); }
-  @keyframes pulse { 50% { opacity: .5; } }
-  .yt-credit { margin-top: 26px; font-size: .8rem; color: var(--muted); }
-  @media (max-width: 560px) {
-    .vid-grid { grid-template-columns: 1fr; gap: 14px; }
-    .vid { flex-direction: row; gap: 12px; }
-    .vid .thumb { flex: none; width: 150px; border-radius: 10px; }
-    .vtitle { font-size: .9rem; }
-  }
-
+  .more > summary::-webkit-details-marker { display: none; }
+  .more > summary::after { content: "›"; margin-left: auto; font-size: 1.3rem; line-height: 1; color: var(--muted); transition: transform .2s; }
+  .more[open] > summary::after { transform: rotate(90deg); }
+  .more > summary > span:first-child { white-space: nowrap; }
+  .more > summary .sum-val { font-size: .82rem; color: var(--muted); font-weight: 400; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .more > :not(summary) { margin: 0 18px 18px; }
+  .more .controls { margin-bottom: 0; gap: 12px; }
+  .more .wx-row { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .more .wx-label { width: auto; font-weight: 500; color: var(--ink); }
+  .more .ctl-hint { margin: -6px 0 0; }
+  .more .band { margin-top: 4px; }
+  .more .hourly { margin-top: 0; }
+  .tips { margin-top: 14px; }
+  .reasons .pts, .v-base { display: none; }
+  .reasons li { grid-template-columns: 18px 1fr; }
+  .color-main .verdict { margin: 0 0 22px; }
   footer { margin-top: 56px; font-size: .78rem; color: var(--muted); }
   footer a { color: inherit; }
 
@@ -417,8 +395,11 @@
     header { flex-direction: column; align-items: stretch; }
     .loc { display: grid; grid-template-columns: 1fr 1fr auto; }
     .loc select { max-width: none; min-width: 0; }
-    .outfit { grid-template-columns: 1fr; }
-    .figure-box svg { max-width: 110px; }
+    .outfit { grid-template-columns: 104px 1fr; gap: 16px; }
+    .figure-box { padding: 10px 6px; }
+    .figure-box svg { max-width: 88px; }
+    .item-row { grid-template-columns: 1fr; gap: 4px; }
+    .card { padding: 20px 16px; }
     .body-type { border-radius: 16px; }
     .band-labels { font-size: .62rem; }
   }
@@ -441,7 +422,6 @@
   <nav class="main-tabs" role="tablist" aria-label="메뉴">
     <button type="button" role="tab" id="tab-outfit" data-tab="outfit" aria-controls="panel-outfit" aria-selected="true">오늘 옷차림</button>
     <button type="button" role="tab" id="tab-colors" data-tab="colors" aria-controls="panel-colors" aria-selected="false" tabindex="-1">색 조합</button>
-    <button type="button" role="tab" id="tab-videos" data-tab="videos" aria-controls="panel-videos" aria-selected="false" tabindex="-1">코디 영상</button>
   </nav>
 
   <div class="panel" id="panel-outfit" role="tabpanel" aria-labelledby="tab-outfit">
@@ -451,55 +431,66 @@
       <div class="meta" id="meta"><strong>날씨를 불러오는 중</strong>잠시만 기다려 주세요</div>
     </div>
     <p class="notice" id="notice" hidden></p>
-
-    <div class="band">
-      <div class="band-track" id="band" role="group" aria-label="기온 구간 선택"></div>
-      <div class="band-labels" id="bandLabels"></div>
-      <div class="band-hint">
-        <span id="bandText">구간을 누르면 다른 기온의 옷차림을 볼 수 있어요</span>
-        <button class="link-btn" id="backNow" type="button" hidden>현재 날씨로 돌아가기</button>
-      </div>
-    </div>
+    <button class="link-btn back-now" id="backNow" type="button" hidden>← 현재 날씨로 돌아가기</button>
 
     <div class="when" id="whenCtl" hidden>
       <div class="tabs" id="dayTabs" role="tablist" aria-label="날짜"></div>
       <div class="slots" id="slots" role="group" aria-label="시간대"></div>
     </div>
-
-    <div class="hourly" id="hourly" hidden><div class="hourly-row" id="hourlyRow"></div></div>
   </div>
 
-  <section class="block" aria-labelledby="outfitTitle">
-    <h2 id="outfitTitle">추천 옷차림</h2>
+  <section class="card outfit-card" aria-labelledby="outfitTitle">
+    <h2 id="outfitTitle">오늘은 이렇게 입어요</h2>
     <p class="sub" id="outfitSub">체감온도 기준으로 골랐어요</p>
+    <p class="basis" id="basis" hidden></p>
+    <div class="outfit">
+      <div class="fig-col">
+        <div class="figure-box"><span class="wx-badge" id="wxBadge" hidden></span><svg id="figure" viewBox="0 0 120 212" role="img" aria-label="추천 색 조합을 입은 사람 그림"></svg></div>
+        <button type="button" class="link-btn fig-link" data-goto="colors">색 조합 바꾸기</button>
+      </div>
+      <dl class="items" id="items"></dl>
+    </div>
+    <p class="hint">옷 이름을 누르면 설명을 볼 수 있어요</p>
+  </section>
+
+  <div class="tips" id="tips"></div>
+
+  <details class="more" id="prefBox">
+    <summary><span>내 상황에 맞추기</span><span class="sum-val" id="prefSummary"></span></summary>
     <div class="controls">
       <div class="wx-row"><span class="wx-label">상황</span><div class="body-type" id="sitType" role="group" aria-label="상황"></div></div>
       <div class="wx-row"><span class="wx-label">체질</span><div class="body-type" id="bodyType" role="group" aria-label="더위·추위 타는 정도"></div></div>
       <p class="ctl-hint" id="bodyHint"></p>
       <div class="wx-row"><span class="wx-label">날씨</span><div class="body-type" id="wxType" role="group" aria-label="날씨 상황"></div></div>
     </div>
-    <p class="basis" id="basis" hidden></p>
-    <div class="outfit">
-      <div class="fig-col">
-        <div class="figure-box"><span class="wx-badge" id="wxBadge" hidden></span><svg id="figure" viewBox="0 0 120 212" role="img" aria-label="추천 색 조합을 입은 사람 그림"></svg></div>
-        <button type="button" class="link-btn fig-link" data-goto="colors">그림 색 바꾸기</button>
-      </div>
-      <dl class="items" id="items"></dl>
+  </details>
+
+  <details class="more" id="hourBox">
+    <summary><span>시간별 날씨</span></summary>
+    <div class="hourly" id="hourly" hidden><div class="hourly-row" id="hourlyRow"></div></div>
+  </details>
+
+  <details class="more" id="bandBox">
+    <summary><span>다른 기온일 때 옷차림 보기</span></summary>
+    <div class="band">
+      <div class="band-track" id="band" role="group" aria-label="기온 구간 선택"></div>
+      <div class="band-labels" id="bandLabels"></div>
+      <div class="band-hint"><span id="bandText">구간을 누르면 그 기온의 옷차림을 보여줘요</span></div>
     </div>
-    <p class="hint">옷 이름을 누르면 어떤 옷인지 설명과 그림을 볼 수 있어요</p>
-    <div class="tips" id="tips"></div>
-    <div class="feedback" id="feedback" hidden></div>
-  </section>
+  </details>
+
+  <div class="feedback" id="feedback" hidden></div>
   </div>
 
   <div class="panel" id="panel-colors" role="tabpanel" aria-labelledby="tab-colors" hidden>
 
   <section class="block" aria-labelledby="colorTitle">
     <h2 id="colorTitle">색 조합</h2>
-    <p class="sub">상의와 하의 색을 고르면 얼마나 잘 어울리는지 평가해 드려요</p>
+    <p class="sub">상의·하의 색을 고르면 얼마나 잘 어울리는지 알려드려요</p>
     <p class="ctx" id="colorCtx"></p>
     <div class="color-layout">
       <div class="color-main">
+        <div class="verdict" id="verdict" aria-live="polite"></div>
         <div id="colorPick">
           <h3 class="pick-title">상의 색</h3>
           <div class="swatches" id="topSw"></div>
@@ -507,7 +498,6 @@
           <div class="swatches" id="bottomSw"></div>
         </div>
         <p class="legend"><i></i>지금 기온에 잘 어울리는 색</p>
-        <div class="verdict" id="verdict" aria-live="polite"></div>
         <details class="how">
           <summary>점수는 어떻게 매기나요?</summary>
           <div id="scoreGuide"></div>
@@ -515,36 +505,20 @@
       </div>
       <aside class="ranking" aria-labelledby="rankTitle">
         <h3 id="rankTitle" class="rank-title">추천 순위</h3>
-        <p class="rank-sub">방문자 추천이 많은 순이에요. 추천 수가 같으면 점수순으로 보여줘요.</p>
+        <p class="rank-sub">방문자 추천이 많은 조합이에요. 누르면 바로 볼 수 있어요.</p>
         <div class="tabs" id="rankTabs" role="tablist">
           <button type="button" role="tab" data-tab="all" aria-selected="true">전체</button>
           <button type="button" role="tab" data-tab="mine" aria-selected="false">고른 상의 기준</button>
         </div>
         <ol class="rank-list" id="rankList"></ol>
-        <p class="vote-note" id="voteNote" hidden>지금은 투표가 이 브라우저에만 저장돼요. Vercel에 올리고 저장소를 연결하면 모든 방문자의 투표가 모여요.</p>
+        <p class="vote-note" id="voteNote" hidden>지금은 투표 서버에 연결되지 않아 이 기기에만 저장돼요.</p>
       </aside>
     </div>
   </section>
   </div>
 
-  <div class="panel" id="panel-videos" role="tabpanel" aria-labelledby="tab-videos" hidden>
-  <section class="block" aria-labelledby="videoTitle">
-    <h2 id="videoTitle">요즘 뜨는 코디 영상</h2>
-    <p class="sub">최근 30일 동안 유튜브에 올라온 코디 영상을 조회수 순으로 보여줘요</p>
-    <div class="vid-filters">
-      <div class="topics" id="vidTopics" role="group" aria-label="영상 주제"></div>
-      <div class="body-type" id="vidGender" role="group" aria-label="성별"></div>
-    </div>
-    <p class="vid-status" id="vidStatus" aria-live="polite"></p>
-    <ol class="vid-grid" id="vidGrid"></ol>
-    <p class="yt-credit">영상 정보와 썸네일은 YouTube에서 제공돼요. 영상을 누르면 YouTube에서 열려요.</p>
-  </section>
-  </div>
-
   <footer>
     날씨 정보 <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> ·
-    영상 정보 <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener">YouTube 서비스 약관</a> ·
-    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google 개인정보처리방침</a> ·
     <a href="privacy.html">개인정보 처리방침</a>
   </footer>
 </div>
@@ -810,9 +784,6 @@ const state = {
   userPicked: false,  // 사용자가 직접 색을 골랐는지 (고르면 자동 변경 안 함)
   rankTab: "all",     // 순위 탭: all | mine
   countsLoaded: false,
-  vidTopic: null,     // null이면 지금 날씨에 맞는 계절 주제
-  vidGender: "",
-  videoCache: {},
   wxOverride: null,
   day: 0,             // 0 오늘, 1 내일
   slot: "now",        // now | morning | noon | evening
@@ -1202,8 +1173,8 @@ function render() {
   }).join("");
   $("bandLabels").innerHTML = ZONES.map(zz => `<span>${zz.label}</span>`).join("");
   $("bandText").textContent = ri !== vi
-    ? "점선 구간은 체질·상황을 반영한 옷차림 기준이에요"
-    : "구간을 누르면 다른 기온의 옷차림을 볼 수 있어요";
+    ? "점선 구간은 내 상황을 반영한 옷차림 기준이에요"
+    : "구간을 누르면 그 기온의 옷차림을 보여줘요";
 
   // 시간별
   if (w) {
@@ -1294,7 +1265,8 @@ function render() {
   if (state.body === "hot" && vi <= 3) tips.push(["🧶", "실내가 따뜻할 수 있으니 두꺼운 옷 한 벌보다 벗기 쉬운 레이어드가 좋아요."]);
   if (state.body === "cold" && vi <= 4) tips.push(["🔥", "얇은 이너를 한 겹 더 입거나 핫팩을 챙기세요."]);
   if (state.body === "cold" && vi >= 5 && state.situation !== "office") tips.push(["🧣", "냉방이 강한 실내를 대비해 얇은 가디건을 챙기세요."]);
-  $("tips").innerHTML = tips.map(([ic, t]) => `<div class="tip"><span class="ic">${ic}</span><span>${t}</span></div>`).join("");
+  $("prefSummary").textContent = [SITUATIONS[state.situation].label, { hot: "더위 잘 탐", normal: "보통 체질", cold: "추위 잘 탐" }[state.body], WX_TYPES[wx].label].join(" · ");
+  $("tips").innerHTML = tips.slice(0, 3).map(([ic, t]) => `<div class="tip"><span class="ic">${ic}</span><span>${t}</span></div>`).join("");
 
   renderFeedback();
   renderColors();
@@ -1508,7 +1480,7 @@ function renderRanking() {
     all.push({ t, b, up: c.up, net: c.up - c.down, score: scoreCombo(t, b).score });
   }
   all.sort((x, y) => y.net - x.net || y.up - x.up || y.score - x.score);
-  const list = all.slice(0, state.rankTab === "mine" ? 15 : 20);
+  const list = all.slice(0, 10);
 
   document.querySelectorAll("#rankTabs button").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === state.rankTab));
   $("rankList").innerHTML = list.map((r, i) => {
@@ -1615,6 +1587,7 @@ $("band").addEventListener("click", e => {
   state.exploring = true;
   autoPickTop();
   render();
+  document.querySelector(".hero").scrollIntoView({ behavior: "smooth", block: "start" });
 });
 $("backNow").addEventListener("click", () => {
   if (!state.weather) return;
@@ -1831,144 +1804,8 @@ document.addEventListener("keydown", e => {
   if (e.key === "Tab" && !$("sheet").hidden) { e.preventDefault(); $("sheetClose").focus(); }
 });
 
-/* ---------- 요즘 뜨는 코디 영상 (YouTube) ---------- */
-const VIDEO_API = "/api/videos";
-const VIDEO_TOPICS = ["출근룩", "데이트룩", "운동복 코디", "여행 코디", "비 오는 날 코디"];
-const GENDERS = [["", "전체"], ["남자 ", "남자"], ["여자 ", "여자"]];
-
-// 지금 기온 구간과 달로 계절 검색어 정하기
-function seasonQuery() {
-  const zi = viewZone();
-  const m = new Date().getMonth() + 1;
-  const spring = m >= 2 && m <= 6;
-  if (zi <= 0) return "한겨울 코디";
-  if (zi === 1) return "겨울 코디";
-  if (zi === 2) return spring ? "초봄 코디" : "늦가을 코디";
-  if (zi <= 4) return spring ? "봄 코디" : "가을 코디";
-  if (zi === 5) return spring ? "늦봄 코디" : "초가을 코디";
-  if (zi === 6) return m <= 6 ? "초여름 코디" : m <= 8 ? "여름 코디" : "늦여름 코디";
-  return "여름 코디";
-}
-
-function videoTopics() {
-  const list = [{ q: seasonQuery(), label: `지금 날씨 · ${seasonQuery()}`, auto: true }];
-  const wx = currentWx();
-  const m = new Date().getMonth() + 1;
-  if (wx === "rain") list.push({ q: m >= 6 && m <= 7 ? "장마철 코디" : "비 오는 날 코디" });
-  if (wx === "snow") list.push({ q: "눈 오는 날 코디" });
-  VIDEO_TOPICS.forEach(q => list.push({ q }));
-  const seen = new Set();
-  return list.filter(t => !seen.has(t.q) && seen.add(t.q)).map(t => ({ ...t, label: t.label || t.q }));
-}
-
-const escapeHTML = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-// API 제목에 섞여 오는 &#39; 같은 문자를 원래 글자로 되돌림
-function decodeEntities(s) {
-  const doc = new DOMParser().parseFromString(`<!doctype html><body>${s}`, "text/html");
-  return doc.body.textContent || "";
-}
-
-function formatViews(n) {
-  if (n >= 1e8) return `${(n / 1e8).toFixed(1).replace(/\.0$/, "")}억회`;
-  if (n >= 1e5) return `${Math.round(n / 1e4)}만회`;
-  if (n >= 1e4) return `${(n / 1e4).toFixed(1).replace(/\.0$/, "")}만회`;
-  return `${n.toLocaleString("ko-KR")}회`;
-}
-function formatAgo(iso) {
-  const days = Math.floor((Date.now() - new Date(iso)) / 864e5);
-  if (days < 1) return "오늘";
-  if (days < 7) return `${days}일 전`;
-  return `${Math.floor(days / 7)}주 전`;
-}
-function formatDuration(iso) {
-  const m = /PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/.exec(iso || "");
-  if (!m) return "";
-  const [h, mi, s] = [+m[1] || 0, +m[2] || 0, +m[3] || 0];
-  const pad = x => String(x).padStart(2, "0");
-  return h ? `${h}:${pad(mi)}:${pad(s)}` : `${mi}:${pad(s)}`;
-}
-
-function currentVideoQuery() {
-  const topic = state.vidTopic || seasonQuery();
-  return `${state.vidGender}${topic}`;
-}
-
-function renderVideoFilters() {
-  const topics = videoTopics();
-  const active = state.vidTopic || seasonQuery();
-  $("vidTopics").innerHTML = topics.map(t =>
-    `<button type="button" class="topic${t.auto ? " auto" : ""}" data-q="${escapeHTML(t.auto ? "" : t.q)}" aria-pressed="${t.q === active}">${escapeHTML(t.label)}</button>`
-  ).join("");
-  $("vidGender").innerHTML = GENDERS.map(([v, l]) =>
-    `<button type="button" data-g="${v}" aria-pressed="${v === state.vidGender}">${l}</button>`).join("");
-}
-
-async function loadVideos() {
-  renderVideoFilters();
-  const q = currentVideoQuery();
-  const grid = $("vidGrid"), status = $("vidStatus");
-
-  if (!location.protocol.startsWith("http")) {
-    grid.innerHTML = "";
-    status.textContent = "코디 영상은 배포된 사이트에서 볼 수 있어요.";
-    return;
-  }
-  if (state.videoCache[q]) return renderVideos(q, state.videoCache[q]);
-
-  status.textContent = "영상을 불러오는 중…";
-  grid.innerHTML = Array.from({ length: 6 }, () => `<li class="vid skeleton"><span class="thumb"></span><span class="vtitle"></span></li>`).join("");
-  const reqQ = q;
-  try {
-    const r = await fetch(`${VIDEO_API}?q=${encodeURIComponent(q)}`);
-    const data = await r.json().catch(() => ({}));
-    if (!r.ok) throw new Error(data.error || "지금은 영상을 불러올 수 없어요.");
-    state.videoCache[q] = data;
-    if (reqQ === currentVideoQuery()) renderVideos(q, data);
-  } catch (e) {
-    if (reqQ !== currentVideoQuery()) return;
-    grid.innerHTML = "";
-    status.textContent = e.message || "지금은 영상을 불러올 수 없어요. 잠시 후 다시 시도해 주세요.";
-  }
-}
-
-function renderVideos(q, data) {
-  const list = (data.videos || []).slice(0, 20);
-  $("vidStatus").textContent = list.length
-    ? `"${q}" 최근 30일 영상 조회수 순위${data.stale ? " (잠시 전 정보예요)" : ""}`
-    : `"${q}"로 최근 30일 동안 올라온 영상이 없어요. 다른 주제를 골라 보세요.`;
-  $("vidGrid").innerHTML = list.map((v, i) => {
-    const title = escapeHTML(decodeEntities(v.title));
-    const channel = escapeHTML(decodeEntities(v.channel));
-    const dur = formatDuration(v.duration);
-    return `<li><a class="vid" href="https://www.youtube.com/watch?v=${encodeURIComponent(v.id)}" target="_blank" rel="noopener">
-      <span class="thumb">
-        <img src="${escapeHTML(v.thumb)}" alt="" loading="lazy" width="320" height="180">
-        <span class="vrank">${i + 1}</span>
-        ${dur ? `<span class="dur">${dur}</span>` : ""}
-      </span>
-      <span class="vbody">
-        <span class="vtitle">${title}</span>
-        <span class="vmeta">${channel}</span>
-        <span class="vmeta">조회수 ${formatViews(v.views)} · ${formatAgo(v.publishedAt)}</span>
-        <span class="yt-tag"><svg viewBox="0 0 24 17" aria-hidden="true"><rect width="24" height="17" rx="4" fill="#FF0000"/><path d="M9.6 4.8v7.4l6.4-3.7z" fill="#fff"/></svg>YouTube</span>
-      </span>
-    </a></li>`;
-  }).join("");
-}
-
-$("vidTopics").addEventListener("click", e => {
-  const b = e.target.closest(".topic"); if (!b) return;
-  state.vidTopic = b.dataset.q || null;
-  loadVideos();
-});
-$("vidGender").addEventListener("click", e => {
-  const b = e.target.closest("button"); if (!b) return;
-  state.vidGender = b.dataset.g;
-  loadVideos();
-});
-
 /* ---------- 메인 탭 ---------- */
-const TABS = ["outfit", "colors", "videos"];
+const TABS = ["outfit", "colors"];
 function setTab(name, fromHash) {
   if (!TABS.includes(name)) name = "outfit";
   TABS.forEach(t => {
@@ -1977,7 +1814,6 @@ function setTab(name, fromHash) {
     $(`tab-${t}`).tabIndex = on ? 0 : -1;
     $(`panel-${t}`).hidden = !on;
   });
-  if (name === "videos") loadVideos();
   // 주소에 #탭이름 남기기 (미리보기처럼 주소를 바꿀 수 없는 환경이면 건너뜀)
   if (!fromHash && location.hash !== `#${name}`) {
     try { history.pushState(null, "", `#${name}`); } catch (e) { /* 탭 전환은 그대로 동작 */ }
